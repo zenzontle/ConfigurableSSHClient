@@ -1,0 +1,62 @@
+﻿<Window x:Class="ConfigurableSSHClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ViewModel="clr-namespace:ConfigurableSSHClient.ViewModels"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        Title="MainWindow" Height="500" Width="500">
+    <Window.Resources>
+        <System:String x:Key="SFTPAddress">SFTP Address :</System:String>
+        <System:String x:Key="SFTPPort">SFTP Port :</System:String>
+        <System:String x:Key="TestConnection">Test Connection</System:String>
+    </Window.Resources>
+    <Window.DataContext>
+        <ViewModel:SftpConnectionViewModel/>
+    </Window.DataContext>
+
+    <UserControl>
+        <UserControl.InputBindings>
+            <KeyBinding Key="Enter" Command="{Binding TestConnectionCommand}"/>
+        </UserControl.InputBindings>
+
+        <StackPanel>
+            <StackPanel Margin="12,12,0,0" VerticalAlignment="Top" Width="300">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="{StaticResource ResourceKey=SFTPAddress}" />
+                    <Label Grid.Row="1" Grid.Column="0" Content="{StaticResource ResourceKey=SFTPPort}" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServerAddressText, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServerPortText, UpdateSourceTrigger=PropertyChanged}" />
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <ListBox ItemsSource="{Binding MacAlgorithms}">
+                    <ListBox.ItemTemplate>
+                        <HierarchicalDataTemplate>
+                            <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
+                        </HierarchicalDataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox ItemsSource="{Binding EncryptionAlgorithms}">
+                    <ListBox.ItemTemplate>
+                        <HierarchicalDataTemplate>
+                            <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
+                        </HierarchicalDataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+            <Button Content="{StaticResource ResourceKey=TestConnection}" Margin="15" Height="23" VerticalAlignment="Bottom" Width="120" Command="{Binding TestConnectionCommand}" />
+            <StackPanel Height="100">
+                <ListView Name="lsvLog" Height="100" ItemsSource="{Binding Log}"></ListView>
+            </StackPanel>
+        </StackPanel>
+    </UserControl>
+</Window>
