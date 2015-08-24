@@ -15,14 +15,20 @@ namespace ConfigurableSSHClient.Models
 
         public List<SshAlgorithm> EncryptionAlgorithms { get; set; }
 
+        public List<SshAlgorithm> CompressionAlgorithms { get; set; }
+
+        public List<SshAlgorithm> KeyExchangeAlgorithms { get; set; }
+
         private readonly SftpClient _sftpClient;
 
-        public SftpConnectionModel(string serverAddress, int serverPort, List<SshAlgorithm> macAlgorithms, List<SshAlgorithm> encryptionAlgorithms)
+        public SftpConnectionModel(string serverAddress, int serverPort, List<SshAlgorithm> macAlgorithms, List<SshAlgorithm> encryptionAlgorithms, List<SshAlgorithm> compressionAlgorithms, List<SshAlgorithm> keyExchangeAlgorithms)
         {
             ServerAddress = serverAddress;
             ServerPort = serverPort;
             MacAlgorithms = macAlgorithms;
             EncryptionAlgorithms = encryptionAlgorithms;
+            CompressionAlgorithms = compressionAlgorithms;
+            KeyExchangeAlgorithms = keyExchangeAlgorithms;
 
             _sftpClient = new SftpClient();
         }
@@ -31,8 +37,10 @@ namespace ConfigurableSSHClient.Models
         {
             string macAlgos = string.Join(",", MacAlgorithms.Where(t => t.IsEnabled).Select(t => t.Name));
             string encryptionAlgos = string.Join(",", EncryptionAlgorithms.Where(t => t.IsEnabled).Select(t => t.Name));
+            string compressionAlgos = string.Join(",", CompressionAlgorithms.Where(t => t.IsEnabled).Select(t => t.Name));
+            string keyExchangeAlgos = string.Join(",", KeyExchangeAlgorithms.Where(t => t.IsEnabled).Select(t => t.Name));
 
-            return _sftpClient.TryConnection(ServerAddress, ServerPort, macAlgos, encryptionAlgos);
+            return _sftpClient.TryConnection(ServerAddress, ServerPort, macAlgos, encryptionAlgos, compressionAlgos, keyExchangeAlgos);
         }
     }
 }

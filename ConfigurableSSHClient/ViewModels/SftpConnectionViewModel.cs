@@ -33,7 +33,18 @@ namespace ConfigurableSSHClient.ViewModels
             encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "3des-cbc" });
             encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "none" });
 
-            _sftpConnection = new SftpConnectionModel("127.0.0.1", 22, macAlgorithmsList, encryptionAlgorithmsList);
+            List<SshAlgorithm> compressionAlgorithmsList = new List<SshAlgorithm>();
+            compressionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "zlib" });
+            compressionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "zlib@openssh.com" });
+            compressionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "none" });
+
+            List<SshAlgorithm> keyExchangeAlgorithmsList = new List<SshAlgorithm>();
+            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "diffie-hellman-group1-sha1" });
+            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "diffie-hellman-group14-sha1" });
+            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "diffie-hellman-group-exchange-sha256" });
+            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "diffie-hellman-group-exchange-sha1" });
+
+            _sftpConnection = new SftpConnectionModel("127.0.0.1", 22, macAlgorithmsList, encryptionAlgorithmsList, compressionAlgorithmsList, keyExchangeAlgorithmsList);
         }
 
         public string ServerAddressText
@@ -89,6 +100,32 @@ namespace ConfigurableSSHClient.ViewModels
             {
                 _sftpConnection.EncryptionAlgorithms = new List<SshAlgorithm>(value);
                 OnPropertyChangedEvent("EncryptionAlgorithmsText");
+            }
+        }
+
+        public ObservableCollection<SshAlgorithm> CompressionAlgorithms
+        {
+            get
+            {
+                return new ObservableCollection<SshAlgorithm>(_sftpConnection.CompressionAlgorithms);
+            }
+            set
+            {
+                _sftpConnection.CompressionAlgorithms = new List<SshAlgorithm>(value);
+                OnPropertyChangedEvent("CompressionAlgorithmsText");
+            }
+        }
+
+        public ObservableCollection<SshAlgorithm> KeyExchangeAlgorithms
+        {
+            get
+            {
+                return new ObservableCollection<SshAlgorithm>(_sftpConnection.KeyExchangeAlgorithms);
+            }
+            set
+            {
+                _sftpConnection.KeyExchangeAlgorithms = new List<SshAlgorithm>(value);
+                OnPropertyChangedEvent("KeyExchangeAlgorithmsText");
             }
         }
 
