@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomControls\AlignableWrapPanel.cs" />
     <Compile Include="Controls\DelegateCommand.cs" />
     <Compile Include="Models\SftpConnectionModel.cs" />
     <Compile Include="SSH\SftpClient.cs" />

@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ViewModel="clr-namespace:ConfigurableSSHClient.ViewModels"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
-        Title="MainWindow" Height="500" Width="600">
+        xmlns:y="clr-namespace:ConfigurableSSHClient.CustomControls"
+        Title="MainWindow" Height="500" Width="600" MinWidth="250">
     <Window.Resources>
         <System:String x:Key="SFTPAddress">SFTP Address :</System:String>
         <System:String x:Key="SFTPPort">SFTP Port :</System:String>
@@ -17,13 +18,13 @@
         <ViewModel:SftpConnectionViewModel/>
     </Window.DataContext>
 
-    <UserControl>
-        <UserControl.InputBindings>
-            <KeyBinding Key="Enter" Command="{Binding TestConnectionCommand}"/>
-        </UserControl.InputBindings>
+    <ScrollViewer>
+        <UserControl>
+            <UserControl.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding TestConnectionCommand}"/>
+            </UserControl.InputBindings>
 
-        <StackPanel>
-            <StackPanel Margin="12,12,0,0" VerticalAlignment="Top" Width="300">
+            <StackPanel>
                 <Grid HorizontalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -32,7 +33,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Content="{StaticResource SFTPAddress}" />
@@ -40,58 +41,57 @@
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServerAddressText, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServerPortText, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
+                <y:AlignableWrapPanel HorizontalAlignment="Center" HorizontalContentAlignment="Center">
+                    <StackPanel>
+                        <Label Content="{StaticResource MAC}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <ListBox ItemsSource="{Binding MacAlgorithms}">
+                            <ListBox.ItemTemplate>
+                                <HierarchicalDataTemplate>
+                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
+                                </HierarchicalDataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="{StaticResource Encryption}" FontWeight="Bold" HorizontalAlignment="Center" />
+                        <ListBox ItemsSource="{Binding EncryptionAlgorithms}">
+                            <ListBox.ItemTemplate>
+                                <HierarchicalDataTemplate>
+                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
+                                </HierarchicalDataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="{StaticResource Compression}" FontWeight="Bold" HorizontalAlignment="Center" />
+                        <ListBox ItemsSource="{Binding CompressionAlgorithms}">
+                            <ListBox.ItemTemplate>
+                                <HierarchicalDataTemplate>
+                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
+                                </HierarchicalDataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="{StaticResource KeyExchange}" FontWeight="Bold" HorizontalAlignment="Center" />
+                        <ListBox ItemsSource="{Binding KeyExchangeAlgorithms}">
+                            <ListBox.ItemTemplate>
+                                <HierarchicalDataTemplate>
+                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
+                                </HierarchicalDataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </y:AlignableWrapPanel>
+                <Button Margin="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding TestConnectionCommand}">
+                    <Button.Content>
+                        <TextBlock TextWrapping="Wrap" Text="{StaticResource ResourceKey=TestConnection}" />
+                    </Button.Content>
+                </Button>
+                <StackPanel>
+                    <ListView Name="lsvLog" Height="150" ItemsSource="{Binding Log}"></ListView>
+                </StackPanel>
             </StackPanel>
-            <StackPanel>
-                <Grid HorizontalAlignment="Center">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <Label Grid.Row="0" Grid.Column="0" Content="{StaticResource MAC}" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MacAlgorithms}">
-                        <ListBox.ItemTemplate>
-                            <HierarchicalDataTemplate>
-                                <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
-                            </HierarchicalDataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <Label Grid.Row="0" Grid.Column="1" Content="{StaticResource Encryption}" FontWeight="Bold" HorizontalAlignment="Center" />
-                    <ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding EncryptionAlgorithms}">
-                        <ListBox.ItemTemplate>
-                            <HierarchicalDataTemplate>
-                                <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
-                            </HierarchicalDataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <Label Grid.Row="0" Grid.Column="2" Content="{StaticResource Compression}" FontWeight="Bold" HorizontalAlignment="Center" />
-                    <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding CompressionAlgorithms}">
-                        <ListBox.ItemTemplate>
-                            <HierarchicalDataTemplate>
-                                <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
-                            </HierarchicalDataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <Label Grid.Row="0" Grid.Column="3" Content="{StaticResource KeyExchange}" FontWeight="Bold" HorizontalAlignment="Center" />
-                    <ListBox Grid.Row="1" Grid.Column="3" ItemsSource="{Binding KeyExchangeAlgorithms}">
-                        <ListBox.ItemTemplate>
-                            <HierarchicalDataTemplate>
-                                <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
-                            </HierarchicalDataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </StackPanel>
-            <Button Content="{StaticResource ResourceKey=TestConnection}" Margin="15" Height="23" VerticalAlignment="Bottom" Width="120" Command="{Binding TestConnectionCommand}" />
-            <StackPanel>
-                <ListView Name="lsvLog" Height="150" ItemsSource="{Binding Log}"></ListView>
-            </StackPanel>
-        </StackPanel>
-    </UserControl>
+        </UserControl>
+    </ScrollViewer>
 </Window>
