@@ -29,19 +29,18 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" Content="{StaticResource SFTPAddress}" />
-                    <Label Grid.Row="1" Grid.Column="0" Content="{StaticResource SFTPPort}" />
+                    <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold" Content="{StaticResource SFTPAddress}" />
+                    <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold" Content="{StaticResource SFTPPort}" />
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServerAddressText, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServerPortText, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
-                <y:AlignableWrapPanel HorizontalAlignment="Center" HorizontalContentAlignment="Center">
+                <y:AlignableWrapPanel HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0, 10, 0, 0">
                     <StackPanel>
                         <Label Content="{StaticResource MAC}" FontWeight="Bold" HorizontalAlignment="Center"/>
                         <ListBox ItemsSource="{Binding MacAlgorithms}">

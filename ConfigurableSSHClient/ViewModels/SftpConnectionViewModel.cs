@@ -130,6 +130,9 @@ namespace ConfigurableSSHClient.ViewModels
         }
 
         private readonly ObservableCollection<string> _log = new ObservableCollection<string>();
+        /// <summary>
+        /// Contains a collection of all the logs status thrown by the SFTP client.
+        /// </summary>
         public IEnumerable<string> Log
         {
             get
@@ -139,6 +142,9 @@ namespace ConfigurableSSHClient.ViewModels
         }
 
         private string _lastLog = string.Empty;
+        /// <summary>
+        /// Contains only the last log status thrown by the SFTP client.
+        /// </summary>
         public string LastLog
         {
             get
