@@ -138,6 +138,20 @@ namespace ConfigurableSSHClient.ViewModels
             }
         }
 
+        private string _lastLog = string.Empty;
+        public string LastLog
+        {
+            get
+            {
+                return _lastLog;
+            }
+            set
+            {
+                _lastLog = value;
+                OnPropertyChangedEvent("LastLog");
+            }
+        }
+
         public ICommand TestConnectionCommand
         {
             get
@@ -155,6 +169,7 @@ namespace ConfigurableSSHClient.ViewModels
         private void AddToLog(string item)
         {
             _log.Add(item);
+            LastLog = item;
         }
     }
 }
