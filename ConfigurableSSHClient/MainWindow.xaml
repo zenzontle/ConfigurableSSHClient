@@ -16,6 +16,9 @@
         <Style x:Key="EncryptionPanelStyle" TargetType="StackPanel">
             <Setter Property="Margin" Value="3, 0, 3, 0"></Setter>
         </Style>
+        <Style x:Key="ControlLabelStyle" TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+        </Style>
     </Window.Resources>
     <Window.DataContext>
         <ViewModel:SftpConnectionViewModel/>
@@ -38,14 +41,14 @@
                         <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold" Content="{StaticResource SFTPAddress}" />
-                    <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold" Content="{StaticResource SFTPPort}" />
+                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource ControlLabelStyle}" Content="{StaticResource SFTPAddress}" />
+                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource ControlLabelStyle}" Content="{StaticResource SFTPPort}" />
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServerAddressText, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServerPortText, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
                 <y:AlignableWrapPanel HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0, 10, 0, 0">
-                    <StackPanel Style="{StaticResource ResourceKey=EncryptionPanelStyle}">
-                        <Label Content="{StaticResource MAC}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <StackPanel Style="{StaticResource EncryptionPanelStyle}">
+                        <Label Content="{StaticResource MAC}" Style="{StaticResource ControlLabelStyle}" HorizontalAlignment="Center"/>
                         <ListBox ItemsSource="{Binding MacAlgorithms}">
                             <ListBox.ItemTemplate>
                                 <HierarchicalDataTemplate>
@@ -54,8 +57,8 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </StackPanel>
-                    <StackPanel Style="{StaticResource ResourceKey=EncryptionPanelStyle}">
-                        <Label Content="{StaticResource Encryption}" FontWeight="Bold" HorizontalAlignment="Center" />
+                    <StackPanel Style="{StaticResource EncryptionPanelStyle}">
+                        <Label Content="{StaticResource Encryption}" Style="{StaticResource ControlLabelStyle}" HorizontalAlignment="Center" />
                         <ListBox ItemsSource="{Binding EncryptionAlgorithms}">
                             <ListBox.ItemTemplate>
                                 <HierarchicalDataTemplate>
@@ -64,8 +67,8 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </StackPanel>
-                    <StackPanel Style="{StaticResource ResourceKey=EncryptionPanelStyle}">
-                        <Label Content="{StaticResource Compression}" FontWeight="Bold" HorizontalAlignment="Center" />
+                    <StackPanel Style="{StaticResource EncryptionPanelStyle}">
+                        <Label Content="{StaticResource Compression}" Style="{StaticResource ControlLabelStyle}" HorizontalAlignment="Center" />
                         <ListBox ItemsSource="{Binding CompressionAlgorithms}">
                             <ListBox.ItemTemplate>
                                 <HierarchicalDataTemplate>
@@ -74,8 +77,8 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </StackPanel>
-                    <StackPanel Style="{StaticResource ResourceKey=EncryptionPanelStyle}">
-                        <Label Content="{StaticResource KeyExchange}" FontWeight="Bold" HorizontalAlignment="Center" />
+                    <StackPanel Style="{StaticResource EncryptionPanelStyle}">
+                        <Label Content="{StaticResource KeyExchange}" Style="{StaticResource ControlLabelStyle}" HorizontalAlignment="Center" />
                         <ListBox ItemsSource="{Binding KeyExchangeAlgorithms}">
                             <ListBox.ItemTemplate>
                                 <HierarchicalDataTemplate>
