@@ -24,7 +24,7 @@
         <ViewModel:SftpConnectionViewModel/>
     </Window.DataContext>
 
-    <ScrollViewer>
+    <ScrollViewer Style="{DynamicResource SimpleScrollViewer}">
         <UserControl>
             <UserControl.InputBindings>
                 <KeyBinding Key="Enter" Command="{Binding TestConnectionCommand}"/>
@@ -43,13 +43,13 @@
 
                     <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource ControlLabelStyle}" Content="{StaticResource SFTPAddress}" />
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource ControlLabelStyle}" Content="{StaticResource SFTPPort}" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ServerAddressText, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ServerPortText, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Style="{DynamicResource SimpleTextBox}" Text="{Binding ServerAddressText, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource SimpleTextBox}" Text="{Binding ServerPortText, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
                 <y:AlignableWrapPanel HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0, 10, 0, 0">
                     <StackPanel Style="{StaticResource EncryptionPanelStyle}">
                         <Label Content="{StaticResource MAC}" Style="{StaticResource ControlLabelStyle}" HorizontalAlignment="Center"/>
-                        <ListBox ItemsSource="{Binding MacAlgorithms}">
+                        <ListBox Style="{DynamicResource SimpleListBox}" ItemsSource="{Binding MacAlgorithms}">
                             <ListBox.ItemTemplate>
                                 <HierarchicalDataTemplate>
                                     <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
@@ -59,7 +59,7 @@
                     </StackPanel>
                     <StackPanel Style="{StaticResource EncryptionPanelStyle}">
                         <Label Content="{StaticResource Encryption}" Style="{StaticResource ControlLabelStyle}" HorizontalAlignment="Center" />
-                        <ListBox ItemsSource="{Binding EncryptionAlgorithms}">
+                        <ListBox Style="{DynamicResource SimpleListBox}" ItemsSource="{Binding EncryptionAlgorithms}">
                             <ListBox.ItemTemplate>
                                 <HierarchicalDataTemplate>
                                     <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
@@ -69,7 +69,7 @@
                     </StackPanel>
                     <StackPanel Style="{StaticResource EncryptionPanelStyle}">
                         <Label Content="{StaticResource Compression}" Style="{StaticResource ControlLabelStyle}" HorizontalAlignment="Center" />
-                        <ListBox ItemsSource="{Binding CompressionAlgorithms}">
+                        <ListBox Style="{DynamicResource SimpleListBox}" ItemsSource="{Binding CompressionAlgorithms}">
                             <ListBox.ItemTemplate>
                                 <HierarchicalDataTemplate>
                                     <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
@@ -79,7 +79,7 @@
                     </StackPanel>
                     <StackPanel Style="{StaticResource EncryptionPanelStyle}">
                         <Label Content="{StaticResource KeyExchange}" Style="{StaticResource ControlLabelStyle}" HorizontalAlignment="Center" />
-                        <ListBox ItemsSource="{Binding KeyExchangeAlgorithms}">
+                        <ListBox Style="{DynamicResource SimpleListBox}" ItemsSource="{Binding KeyExchangeAlgorithms}">
                             <ListBox.ItemTemplate>
                                 <HierarchicalDataTemplate>
                                     <CheckBox Content="{Binding Name}" IsChecked="{Binding IsEnabled}"></CheckBox>
@@ -88,7 +88,7 @@
                         </ListBox>
                     </StackPanel>
                 </y:AlignableWrapPanel>
-                <Button Margin="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding TestConnectionCommand}">
+                <Button Style="{DynamicResource SimpleButton}" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding TestConnectionCommand}">
                     <Button.Content>
                         <TextBlock TextWrapping="Wrap" Text="{StaticResource ResourceKey=TestConnection}" />
                     </Button.Content>
