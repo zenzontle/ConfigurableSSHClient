@@ -4,7 +4,8 @@
         xmlns:ViewModel="clr-namespace:ConfigurableSSHClient.ViewModels"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:y="clr-namespace:ConfigurableSSHClient.CustomControls"
-        Title="MainWindow" Height="500" Width="600" MinWidth="250">
+        Title="Configurable SFTP Client"  Icon="FTP.ico"
+        Height="500" Width="600" MinWidth="250">
     <Window.Resources>
         <System:String x:Key="SFTPAddress">SFTP Address :</System:String>
         <System:String x:Key="SFTPPort">SFTP Port :</System:String>
