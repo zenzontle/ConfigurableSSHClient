@@ -25,7 +25,7 @@
         <ViewModel:SftpConnectionViewModel/>
     </Window.DataContext>
 
-    <ScrollViewer Style="{DynamicResource SimpleScrollViewer}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Style="{DynamicResource SimpleScrollViewer}">
         <UserControl>
             <UserControl.InputBindings>
                 <KeyBinding Key="Enter" Command="{Binding TestConnectionCommand}"/>
@@ -94,7 +94,7 @@
                         <TextBlock TextWrapping="Wrap" Text="{StaticResource ResourceKey=TestConnection}" />
                     </Button.Content>
                 </Button>
-                <TextBox Name="textboxLog" Height="150" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Text="{Binding LastLog}"></TextBox>
+                <TextBox Name="textboxLog" Style="{DynamicResource SimpleTextBox}" Height="150" Margin="6, 0, 6, 0" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Text="{Binding LastLog}"></TextBox>
             </StackPanel>
         </UserControl>
     </ScrollViewer>
