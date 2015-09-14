@@ -16,33 +16,33 @@ namespace ConfigurableSSHClient.ViewModels
         public SftpConnectionViewModel()
         {
             List<SshAlgorithm> macAlgorithmsList = new List<SshAlgorithm>();
-            macAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "hmac-sha1" });
-            macAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "hmac-md5" });
-            macAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "hmac-sha1-96" });
-            macAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "hmac-md5-96" });
+            macAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "hmac-sha1" });
+            macAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "hmac-md5" });
+            macAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "hmac-sha1-96" });
+            macAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "hmac-md5-96" });
             macAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "none" });
 
             List<SshAlgorithm> encryptionAlgorithmsList = new List<SshAlgorithm>();
-            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "aes256-ctr" });
-            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "aes256-cbc" });
-            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "aes192-ctr" });
-            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "aes192-cbc" });
-            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "aes128-ctr" });
-            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "aes128-cbc" });
-            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "3des-ctr" });
-            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "3des-cbc" });
+            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "aes256-ctr" });
+            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "aes256-cbc" });
+            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "aes192-ctr" });
+            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "aes192-cbc" });
+            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "aes128-ctr" });
+            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "aes128-cbc" });
+            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "3des-ctr" });
+            encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "3des-cbc" });
             encryptionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "none" });
 
             List<SshAlgorithm> compressionAlgorithmsList = new List<SshAlgorithm>();
-            compressionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "zlib" });
-            compressionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "zlib@openssh.com" });
+            compressionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "zlib" });
+            compressionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "zlib@openssh.com" });
             compressionAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "none" });
 
             List<SshAlgorithm> keyExchangeAlgorithmsList = new List<SshAlgorithm>();
-            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "diffie-hellman-group1-sha1" });
-            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "diffie-hellman-group14-sha1" });
-            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "diffie-hellman-group-exchange-sha256" });
-            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = false, Name = "diffie-hellman-group-exchange-sha1" });
+            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "diffie-hellman-group1-sha1" });
+            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "diffie-hellman-group14-sha1" });
+            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "diffie-hellman-group-exchange-sha256" });
+            keyExchangeAlgorithmsList.Add(new SshAlgorithm { IsEnabled = true, Name = "diffie-hellman-group-exchange-sha1" });
 
             _sftpConnection = new SftpConnectionModel("127.0.0.1", 22, macAlgorithmsList, encryptionAlgorithmsList, compressionAlgorithmsList, keyExchangeAlgorithmsList);
         }
