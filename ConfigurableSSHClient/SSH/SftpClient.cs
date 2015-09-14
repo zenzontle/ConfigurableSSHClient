@@ -27,7 +27,7 @@ namespace ConfigurableSSHClient.SSH
                 _sftpClient.Config(string.Format("SSHMacAlgorithms={0}", macAlgorithms));
                 _sftpClient.SSHEncryptionAlgorithms = encryptionAlgorithms;
                 _sftpClient.SSHCompressionAlgorithms = compressionAlgorithms;
-                _sftpClient.Config(string.Format("SSHKeyExchangeAlgorithms={0}", macAlgorithms));
+                _sftpClient.Config(string.Format("SSHKeyExchangeAlgorithms={0}", keyExchangeAlgorithms));
                 
                 if (_sftpClient.Connected)
                 {
